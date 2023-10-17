@@ -1,5 +1,4 @@
-import TileProps from "./TileInterface";
 import "./GameTile.css";
-export default function GameTile(props: TileProps) {
-	return <div className="tile">{props.number}</div>;
+export default function GameTile(props: any) {
+	return <div className="tile">{props.currentTileValue}</div>;
 }

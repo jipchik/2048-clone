@@ -4,10 +4,10 @@ import "./GameGrid.css";
 export default function GameGrid() {
 	return (
 		<div className="grid">
-			{gridGenerator(4).map((row: any) => (
-				<div>
-					{row.map((tile: any) => (
-						<GameTile key={Math.random()} number={tile.number} position={{}} />
+			{gridGenerator(4).map((column: any) => (
+				<div key={Math.random()}>
+					{column.map((tileValue: number) => (
+						<GameTile key={Math.random()} currentTileValue={tileValue} />
 					))}
 				</div>
 			))}
