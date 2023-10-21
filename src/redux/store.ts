@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import gridReducer from "./slices/gridSlice";
 
 export const store = configureStore({
-	reducer: {},
+	reducer: {
+		grid: gridReducer
+	},
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

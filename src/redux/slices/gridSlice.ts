@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 interface GridState {
-	grid: Object;
+	grid: string[][];
 }
 
 const initialState: GridState = {
