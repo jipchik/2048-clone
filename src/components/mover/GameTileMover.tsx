@@ -11,14 +11,14 @@ const gameTileMoverButtons: any = [
 
 export default function GameTileMover() {
 	const dispatch = useDispatch();
-	const grid: string[][] = useSelector(getGrid);
+	const grid: any = useSelector(getGrid);
 
 	const handleButtonClick = (event: any, direction: string) => {
-		if (direction === "") return;
 		
 		let newGrid = updateGrid(direction, grid);
 		dispatch(setGrid(newGrid));
 	};
+
 	return (
 		<div className="grid">
 			{gameTileMoverButtons.map((column: Array<string>, i: number) => (
