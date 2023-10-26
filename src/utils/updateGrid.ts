@@ -1,9 +1,10 @@
 import gridGenerator from "./gridGenerator";
 //TODO:: figure this algorithm out for updating the grid based on its passed in state, should be fun
 export default function updateGrid(
-	direction: Object,
-	currentGrid: Array<Array<string>>
-): Object {
+	direction: string,
+	currentGrid: any
+): any {
+	let isValid: Boolean = false;
 	let newGrid = gridGenerator(4);
 	switch(direction) {
 		case "RIGHT":
@@ -32,10 +33,14 @@ export default function updateGrid(
 			console.log('Unexpected case encountered.');
 			break;
 	}
-	console.log(newGrid)
-	return newGrid;
+
+	return [isValid, newGrid];
 }
 
 function cellUpdator(num: number){
     return String(num * num)
+}
+
+function validateBoardIsStillPlayable(grid: any){
+
 }
