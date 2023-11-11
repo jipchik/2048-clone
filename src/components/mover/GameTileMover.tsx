@@ -20,7 +20,6 @@ export default function GameTileMover() {
 	const handleButtonClick = (event: any, direction: string) => {
 		
 		let [isValid, newGrid] = updateGrid(direction, grid);
-		console.log(isValid, newGrid)
 		if (!isValid) {
 			setLoserAlert(messages.YOU_LOSE);
 			return;
@@ -43,9 +42,9 @@ export default function GameTileMover() {
 					</div>
 				))}
 			</div>
-			<div>
+			{/* <div>
 				<YouLoseModal message={loserAlert} reset={setLoserAlert}/>
-			</div>
+			</div> */}
 		</div>
 	);
 }

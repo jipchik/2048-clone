@@ -9,7 +9,7 @@ interface GridState {
 }
 
 const initialState: GridState = {
-	grid: gridGenerator(4),
+	grid: gridGenerator(4, true),
 	scale: 4,
 	winState: true
 };

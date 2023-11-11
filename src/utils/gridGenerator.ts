@@ -1,7 +1,10 @@
-export default function gridGenerator(size: number) {
+export default function gridGenerator(size: number, insert: Boolean) {
 	let gameGrid: any = [];
 	for (let i = 0; i < size; i++) {
 		gameGrid.push(Array(size).fill(""));
+	}
+	if (!insert) {
+		return gameGrid;
 	}
 	const x0 = rn(0, 4);
 	const y0 = rn(0, 4);
