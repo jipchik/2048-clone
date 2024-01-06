@@ -13,6 +13,7 @@ export default function gridGenerator(size: number, insert: Boolean) {
 	const x1 = rn(0, 4);
 	const y1 = rn(0, 4);
 	gameGrid[x1][y1] = gameGrid[x1][y1] === "2" ? gameGrid[rn(1, 4)][rn(1, 4)] : "2"; //there is a collision problem here, fix it (was good enough ATT)
+	console.log(gameGrid)
 	return gameGrid;
 }
 

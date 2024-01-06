@@ -9,37 +9,26 @@ export default function updateGrid(
 
 	switch (direction) {
 		case "RIGHT":
-			let i = 0;
-			for (let row of currentGrid) {
+			for (let i = 0; i < currentGrid.length - 1; i++) {
 				let j = 0;
-				for (let cell of row) {
-					if (cell !== "" && i !== 3) {
-						if (currentGrid[i + 1][j] === ""){
-							//just move
-							if (currentGrid[i + 1][j] !== undefined) {
-								tempGrid[i + 1][j] = cell;
-								//tempGrid[i][j] = "";
-								console.log('open space')
-							} else {
-								tempGrid[i + 1][j] = cell;
-							}
-						} else {
-							//add em
-							if (currentGrid[i + 1][j] !== undefined) {
-								let cellNum = cellUpdator(parseInt(cell));
-								tempGrid[i + 1][j] = cellNum;
-								//tempGrid[i][j] = "";
-								console.log('adding');
-							} else {
-								tempGrid[i][j] = cell;
-							}
-						}
+				let hasNotMoved = true;
+				while (j < 3 || hasNotMoved) {
+					let currTileValue = currentGrid[i][j];
+					console.log(`current value when i = ${i} and j = ${j} is: ${currTileValue}`)
+					if (currentGrid[i + 1][j] === undefined) {
+						tempGrid[i][j] = currTileValue;
+						break;
+					}
+					if (currentGrid[i + 1][j] === currentGrid[i][j]) {
+						let newTileValue = parseInt(currTileValue) + parseInt(currTileValue);
+						tempGrid[i + 1][j] = String(newTileValue);
+						tempGrid[i + 1][j] = "";
+						hasNotMoved = false;
 					} else {
-						tempGrid[i][j] = cell;
+						tempGrid[i + 1][j] = currTileValue;
 					}
 					j++;
 				}
-				i++;
 			}
 			break;
 		case "LEFT":
@@ -56,7 +45,7 @@ export default function updateGrid(
 			break;
 	}
 	isValid = validateBoardIsStillPlayable(tempGrid);
-	console.log(tempGrid)
+	//console.log(tempGrid)
 	return [isValid, tempGrid];
 }
 
