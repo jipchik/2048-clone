@@ -3,12 +3,13 @@ import gridGenerator from "../../utils/gridGenerator";
 import GameGrid from "../grid/GameGrid";
 import GameTileMover from "../mover/GameTileMover";
 import { useSelector } from "react-redux";
+import './Game.css'
 import YouLoseModal from "./YouLoseModal";
 import { getScale } from "../../redux/slices/gridSlice";
 export default function Game() {
 	const scale = useSelector(getScale);
 	return (
-		<div>
+		<div className='game'>
 			<h1>Current Game Grid Scale: {scale}</h1>
 			<GameGrid />
 			<GameTileMover />
