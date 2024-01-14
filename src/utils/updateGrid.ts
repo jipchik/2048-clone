@@ -6,8 +6,7 @@ export default function updateGrid(
 ): any {
 	let isValid: Boolean = false;
 	let tempGrid: any = gridGenerator(4, false);
-	let comparisonGrid: any = [];
-	
+
 	currentGrid = toMatrix(currentGrid, 4);
 
 	switch (direction) {
@@ -15,29 +14,30 @@ export default function updateGrid(
 			for (let i = 0; i < currentGrid.length; i++) {
 				for (let j = 0; j < currentGrid.length; j++) {
 					console.log(`value @ ${i}_${j}: ${currentGrid[i][j]}`)
-					if (currentGrid[i][j + 1] === undefined || currentGrid[i][j] !== currentGrid[i][j + 1]) {
-						tempGrid[i][j] = currentGrid[i][j];
-						console.log('In the case of j + 1 is undefined or not equal to the currentGrid[i][j].')
-					}
-					if (currentGrid[i][j] === currentGrid[i][j + 1] && currentGrid[i][j + 1] !== "") {
-						console.log('In the case that the next cell to the right contains the same value as the current iteration and is not an empty string, adding together.')
+					if (currentGrid[i][j + 1] === "" && currentGrid[i][j] !== "") {
+						console.log('case 1', currentGrid[i][j])
+						tempGrid[i][j + 1] = currentGrid[i][j];
+						console.log(tempGrid[i][j + 1])
+						continue;
+					} 
+					
+					if (currentGrid[i][j] === currentGrid[i][j + 1] && (currentGrid[i][j + 1] !== "" && currentGrid[i][j] !== "")) {
+						console.log('case 2')
 						let temp = parseInt(currentGrid[i][j]);
-						currentGrid[i][j] = "";
-						let newCellValue = temp + temp;
-
-						let tempJ = j;
-						while (currentGrid[i][tempJ + 1] !== undefined) {
-							tempGrid[i][tempJ + 1] = String(newCellValue);
-							tempJ++;
-						}
-						console.log(`new cell value: ${newCellValue}`)
+						let newCellValue = String(temp + temp);
+						tempGrid[i][j + 1] = newCellValue;
+						console.log(newCellValue, tempGrid, tempGrid[i][j + 1])
+						continue;
+					} 
+					if (currentGrid[i][j + 1] === undefined) {
+						tempGrid[i][j] = currentGrid[i][j];
+						console.log('case 3')
+						continue;
 					}
-					let tempJ = j;
-					while (currentGrid[i][tempJ + 1] !== undefined) {
-						tempGrid[i][tempJ + 1] = currentGrid[i][j];
-						tempJ++;
-					}
-					console.log('In the else case, next right cell must be an empty string so we just move the value over.')
+					console.log('else case')
+					tempGrid[i][j] = currentGrid[i][j];
+					tempGrid[i][j + 1] = currentGrid[i][j + 1];
+					
 				}
 			}
 			break;
@@ -54,14 +54,13 @@ export default function updateGrid(
 			console.log('Unexpected case encountered.');
 			break;
 	}
+	console.log('temp grid before insertion', tempGrid)
+	tempGrid = insertNewValueIntoGrid(tempGrid);
+	console.log('temp grid after insertion', tempGrid)
+
 	isValid = validateBoardIsStillPlayable(tempGrid);
-	console.log('temp grid', tempGrid)
 	tempGrid = tempGrid.map((row: any[]) => row.join()).join().split(',');
 	return [isValid, tempGrid];
-}
-
-function cellUpdator(num: number): string {
-	return String(num + num)
 }
 
 function validateBoardIsStillPlayable(grid: any): Boolean {
@@ -77,6 +76,25 @@ function validateBoardIsStillPlayable(grid: any): Boolean {
 }
 
 const toMatrix = (arr: string[], width: number) => {
-	return arr.reduce((rows: any, key: any, index: number) => (index % width == 0 ? rows.push([key]) 
-	  : rows[rows.length-1].push(key)) && rows, []);
+	return arr.reduce((rows: any, key: any, index: number) => (index % width === 0 ? rows.push([key])
+		: rows[rows.length - 1].push(key)) && rows, []);
+}
+
+const insertNewValueIntoGrid = (grid: any): any => {
+	let hasBeenPlaced = false;
+	do {
+		let numOne = rn(0, 4);
+		let numTwo = rn(0, 4);
+		if (grid[numOne][numTwo] === "") {
+			grid[numOne][numTwo] = "2";
+			hasBeenPlaced = true;
+		}
+
+	} while (!hasBeenPlaced)
+	return grid;
+}
+
+// Function to generate random number between the range, inclusively
+function rn(min: number, max: number): string {
+	return String(Math.floor(Math.random() * (max - min) + min));
 }
