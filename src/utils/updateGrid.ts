@@ -5,39 +5,31 @@ export default function updateGrid(
 	currentGrid: any
 ): any {
 	let isValid: Boolean = false;
-	let tempGrid: any = gridGenerator(4, false);
-
 	currentGrid = toMatrix(currentGrid, 4);
 
 	switch (direction) {
 		case "RIGHT":
 			for (let i = 0; i < currentGrid.length; i++) {
+				let mutex = false;
 				for (let j = 0; j < currentGrid.length; j++) {
-					console.log(`value @ ${i}_${j}: ${currentGrid[i][j]}`)
 					if (currentGrid[i][j + 1] === "" && currentGrid[i][j] !== "") {
-						console.log('case 1', currentGrid[i][j])
-						tempGrid[i][j + 1] = currentGrid[i][j];
-						console.log(tempGrid[i][j + 1])
+						currentGrid[i][j + 1] = currentGrid[i][j];
+						currentGrid[i][j] = currentGrid[i][j - 1];
 						continue;
 					} 
-					
 					if (currentGrid[i][j] === currentGrid[i][j + 1] && (currentGrid[i][j + 1] !== "" && currentGrid[i][j] !== "")) {
-						console.log('case 2')
-						let temp = parseInt(currentGrid[i][j]);
-						let newCellValue = String(temp + temp);
-						tempGrid[i][j + 1] = newCellValue;
-						console.log(newCellValue, tempGrid, tempGrid[i][j + 1])
+						if(!mutex) {
+							let temp = parseInt(currentGrid[i][j]);
+							let newCellValue = String(temp + temp);
+							currentGrid[i][j + 1] = newCellValue;
+							mutex = true;
+						}
 						continue;
 					} 
 					if (currentGrid[i][j + 1] === undefined) {
-						tempGrid[i][j] = currentGrid[i][j];
-						console.log('case 3')
+						currentGrid[i][j] = currentGrid[i][j];
 						continue;
 					}
-					console.log('else case')
-					tempGrid[i][j] = currentGrid[i][j];
-					tempGrid[i][j + 1] = currentGrid[i][j + 1];
-					
 				}
 			}
 			break;
@@ -54,13 +46,10 @@ export default function updateGrid(
 			console.log('Unexpected case encountered.');
 			break;
 	}
-	console.log('temp grid before insertion', tempGrid)
-	tempGrid = insertNewValueIntoGrid(tempGrid);
-	console.log('temp grid after insertion', tempGrid)
-
-	isValid = validateBoardIsStillPlayable(tempGrid);
-	tempGrid = tempGrid.map((row: any[]) => row.join()).join().split(',');
-	return [isValid, tempGrid];
+	currentGrid = insertNewValueIntoGrid(currentGrid);
+	isValid = validateBoardIsStillPlayable(currentGrid);
+	currentGrid = currentGrid.map((row: any[]) => row.join()).join().split(',');
+	return [isValid, currentGrid];
 }
 
 function validateBoardIsStillPlayable(grid: any): Boolean {

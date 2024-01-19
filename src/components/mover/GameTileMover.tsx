@@ -33,9 +33,9 @@ export default function GameTileMover() {
 					</div>
 				))}
 			</div>
-			{/* <div>
+			<div>
 				<YouLoseModal message={loserAlert} reset={setLoserAlert}/>
-			</div> */}
+			</div>
 		</section>
 	);
 }
