@@ -1,3 +1,12 @@
 # 2048 Clone
 
-## Just for react practice with typescript.
+## A getting started with react + TS project of sorts.
+
+
+### To-dos:
+1. Support for all directions
+2. Actual board validation
+3. Style it up
+    1. Improve the loser modal, i.e., make it an actual modal.
+4. Add linting
+5. Maybe write some tests?
