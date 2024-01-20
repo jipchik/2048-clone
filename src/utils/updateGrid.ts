@@ -10,7 +10,7 @@ export default function updateGrid(
 	switch (direction) {
 		case "RIGHT":
 			for (let i = 0; i < currentGrid.length; i++) {
-				let mutex = false;
+				//let mutex = false;
 				for (let j = 0; j < currentGrid.length; j++) {
 					if (currentGrid[i][j + 1] === "" && currentGrid[i][j] !== "") {
 						currentGrid[i][j + 1] = currentGrid[i][j];
@@ -18,12 +18,13 @@ export default function updateGrid(
 						continue;
 					} 
 					if (currentGrid[i][j] === currentGrid[i][j + 1] && (currentGrid[i][j + 1] !== "" && currentGrid[i][j] !== "")) {
-						if(!mutex) {
+						//if(!mutex) {
 							let temp = parseInt(currentGrid[i][j]);
 							let newCellValue = String(temp + temp);
 							currentGrid[i][j + 1] = newCellValue;
-							mutex = true;
-						}
+							currentGrid[i][j] = "";
+							//mutex = true;
+						//}
 						continue;
 					} 
 					if (currentGrid[i][j + 1] === undefined) {
@@ -34,10 +35,60 @@ export default function updateGrid(
 			}
 			break;
 		case "LEFT":
-			console.log(direction);
+			for (let i = 0; i < currentGrid.length; i++) {
+				//let mutex = false;
+				for (let j = 0; j < currentGrid.length; j++) {
+					if (currentGrid[i][j - 1] === "" && currentGrid[i][j] !== "") {
+						currentGrid[i][j - 1] = currentGrid[i][j];
+						currentGrid[i][j] = currentGrid[i][j + 1];
+						continue;
+					} 
+					if (currentGrid[i][j] === currentGrid[i][j - 1] && (currentGrid[i][j - 1] !== "" && currentGrid[i][j] !== "")) {
+						//if(!mutex) {
+							let temp = parseInt(currentGrid[i][j]);
+							let newCellValue = String(temp + temp);
+							currentGrid[i][j - 1] = newCellValue;
+							currentGrid[i][j] = "";
+							//mutex = true;
+						//}
+						continue;
+					} 
+					if (currentGrid[i][j - 1] === undefined) {
+						currentGrid[i][j] = currentGrid[i][j];
+						continue;
+					}
+				} 
+			}
 			break;
 		case "UP":
-			console.log(direction);
+			for (let i = 0; i < currentGrid.length; i++) {
+				//let mutex = false;
+				for (let j = 0; j < currentGrid.length; j++) {
+					console.log(`row: ${i} -- column: ${j}`)
+					if (i === 0 || i === 3) {
+						continue;
+					}
+					if (currentGrid[i - 1][j] === undefined) {
+						currentGrid[i][j] = currentGrid[i][j];
+						continue;
+					}
+					if (currentGrid[i - 1][j] === "" && currentGrid[i][j] !== "") {
+						currentGrid[i - 1][j] = currentGrid[i][j];
+						currentGrid[i][j] = currentGrid[i + 1][j];
+						continue;
+					} 
+					if (currentGrid[i][j] === currentGrid[i - 1][j] && (currentGrid[i - 1][j] !== "" && currentGrid[i][j] !== "")) {
+						//if(!mutex) {
+							let temp = parseInt(currentGrid[i][j]);
+							let newCellValue = String(temp + temp);
+							currentGrid[i - 1][j] = newCellValue;
+							currentGrid[i][j] = "";
+							//mutex = true;
+						//}
+						continue;
+					} 
+				} 
+			}
 			break;
 		case "DOWN":
 			console.log(direction);
@@ -71,15 +122,16 @@ const toMatrix = (arr: string[], width: number) => {
 
 const insertNewValueIntoGrid = (grid: any): any => {
 	let hasBeenPlaced = false;
-	do {
-		let numOne = rn(0, 4);
-		let numTwo = rn(0, 4);
-		if (grid[numOne][numTwo] === "") {
-			grid[numOne][numTwo] = "2";
-			hasBeenPlaced = true;
+	for (let i = 0; i < grid.length; i++){
+		for (let j = 0; j < grid.length; j++) {
+			if(grid[i][j] === "") {
+				grid[i][j] = "2";
+				hasBeenPlaced = true;
+				break;
+			}
 		}
-
-	} while (!hasBeenPlaced)
+		if (hasBeenPlaced) break;
+	}
 	return grid;
 }
 
