@@ -18,13 +18,10 @@ export default function updateGrid(
 						continue;
 					} 
 					if (currentGrid[i][j] === currentGrid[i][j + 1] && (currentGrid[i][j + 1] !== "" && currentGrid[i][j] !== "")) {
-						//if(!mutex) {
 							let temp = parseInt(currentGrid[i][j]);
 							let newCellValue = String(temp + temp);
 							currentGrid[i][j + 1] = newCellValue;
 							currentGrid[i][j] = "";
-							//mutex = true;
-						//}
 						continue;
 					} 
 					if (currentGrid[i][j + 1] === undefined) {
@@ -36,7 +33,6 @@ export default function updateGrid(
 			break;
 		case "LEFT":
 			for (let i = 0; i < currentGrid.length; i++) {
-				//let mutex = false;
 				for (let j = 0; j < currentGrid.length; j++) {
 					if (currentGrid[i][j - 1] === "" && currentGrid[i][j] !== "") {
 						currentGrid[i][j - 1] = currentGrid[i][j];
@@ -44,13 +40,10 @@ export default function updateGrid(
 						continue;
 					} 
 					if (currentGrid[i][j] === currentGrid[i][j - 1] && (currentGrid[i][j - 1] !== "" && currentGrid[i][j] !== "")) {
-						//if(!mutex) {
 							let temp = parseInt(currentGrid[i][j]);
 							let newCellValue = String(temp + temp);
 							currentGrid[i][j - 1] = newCellValue;
 							currentGrid[i][j] = "";
-							//mutex = true;
-						//}
 						continue;
 					} 
 					if (currentGrid[i][j - 1] === undefined) {
@@ -62,9 +55,7 @@ export default function updateGrid(
 			break;
 		case "UP":
 			for (let i = 0; i < currentGrid.length; i++) {
-				//let mutex = false;
 				for (let j = 0; j < currentGrid.length; j++) {
-					console.log(`row: ${i} -- column: ${j}`)
 					if (i === 0 || i === 3) {
 						continue;
 					}
@@ -78,20 +69,39 @@ export default function updateGrid(
 						continue;
 					} 
 					if (currentGrid[i][j] === currentGrid[i - 1][j] && (currentGrid[i - 1][j] !== "" && currentGrid[i][j] !== "")) {
-						//if(!mutex) {
 							let temp = parseInt(currentGrid[i][j]);
 							let newCellValue = String(temp + temp);
 							currentGrid[i - 1][j] = newCellValue;
 							currentGrid[i][j] = "";
-							//mutex = true;
-						//}
 						continue;
 					} 
 				} 
 			}
 			break;
 		case "DOWN":
-			console.log(direction);
+			for (let i = 0; i < currentGrid.length; i++) {
+				for (let j = 0; j < currentGrid.length; j++) {
+					if (i === 0 || i === 3) {
+						continue;
+					}
+					if (currentGrid[i + 1][j] === undefined) {
+						currentGrid[i][j] = currentGrid[i][j];
+						continue;
+					}
+					if (currentGrid[i + 1][j] === "" && currentGrid[i][j] !== "") {
+						currentGrid[i + 1][j] = currentGrid[i][j];
+						currentGrid[i][j] = currentGrid[i + 1][j];
+						continue;
+					} 
+					if (currentGrid[i][j] === currentGrid[i + 1][j] && (currentGrid[i + 1][j] !== "" && currentGrid[i][j] !== "")) {
+							let temp = parseInt(currentGrid[i][j]);
+							let newCellValue = String(temp + temp);
+							currentGrid[i + 1][j] = newCellValue;
+							currentGrid[i][j] = "";
+						continue;
+					} 
+				} 
+			}
 			break;
 		default:
 			console.log('Unexpected case encountered.');

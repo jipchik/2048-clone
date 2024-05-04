@@ -1,8 +1,7 @@
 .mover-grid {
 	display: grid;
-	grid-gap: 5px;
-	grid-template-columns: repeat(3, 25%);
-	grid-template-rows: repeat(3, 25%);
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
 }
 
 .mover {

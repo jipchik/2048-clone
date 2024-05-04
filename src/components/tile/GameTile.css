@@ -1,8 +1,10 @@
 .tile {
 	background-color: #ddd;
 	padding: 10px;
-	text-align: center;
+	align-items: center;
 	height: 50px;
 	width: 50px;
 	border: 1px solid black;
+	justify-content: center;
+	display: flex;
 }

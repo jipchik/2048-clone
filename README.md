@@ -1,6 +1,6 @@
 # 2048 Clone
 
-## A getting started with react + TS project of sorts.
+## A getting started with TS + react project of sorts.
 
 
 ### To-dos:

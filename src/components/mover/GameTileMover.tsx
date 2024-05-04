@@ -4,18 +4,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { getGrid, setGrid } from "../../redux/slices/gridSlice";
 import updateGrid from "../../utils/updateGrid";
 import messages from '../../messages';
-import YouLoseModal from "../game/YouLoseModal";
+
 const gameTileMoverButtons: string[] = ["", "UP", "", "LEFT", "", "RIGHT", "", "DOWN", ""];
-export default function GameTileMover() {
+
+interface GameTileMoverProps {
+	setLoserMessage: Function
+}
+
+export default function GameTileMover(props: GameTileMoverProps) {
 	const dispatch = useDispatch();
 	let grid: any = useSelector(getGrid);
-	const [loserAlert, setLoserAlert] = useState("");
 
 	const handleButtonClick = (event: any, direction: string) => {
 		let [isValid, newGrid] = updateGrid(direction, grid);
-		console.log(newGrid);
+
 		if (!isValid) {
-			setLoserAlert(messages.YOU_LOSE);
+			props.setLoserMessage(messages.YOU_LOSE)
 			return;
 		}
 		dispatch(setGrid(newGrid));
@@ -32,9 +36,6 @@ export default function GameTileMover() {
 						</button>
 					</div>
 				))}
-			</div>
-			<div>
-				<YouLoseModal message={loserAlert} reset={setLoserAlert}/>
 			</div>
 		</section>
 	);
