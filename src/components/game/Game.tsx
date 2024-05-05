@@ -20,7 +20,7 @@ export default function Game() {
 	return (
 		<div>
 			<div className='game'>
-				<button style={{ width: "100px", backgroundColor: "blue", color: "yellow", marginLeft: "95px", marginBottom: "2px" }} onClick={handleResetGameClick}>RESET GAME</button>
+				<button style={{ width: "100px", backgroundColor: "blue", color: "yellow", marginLeft: "95px", marginBottom: "2px", marginTop: "2px" }} onClick={handleResetGameClick}>RESET GAME</button>
 				<GameGrid />
 			</div>
 			<div style={{width: "50%", marginLeft: "30px"}}>
