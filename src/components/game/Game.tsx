@@ -18,18 +18,19 @@ export default function Game() {
 	}
 
 	return (
-		<div className='game'>
-			<div>
-				{/* <h1>Current Game Grid Scale: {scale}</h1> */}
+		<div>
+			<div className='game'>
 				<button style={{ width: "100px", backgroundColor: "blue", color: "yellow", marginLeft: "95px" }} onClick={handleResetGameClick}>RESET GAME</button>
 				<GameGrid />
 			</div>
-			<GameTileMover setLoserMessage={setLoserMessage} />
+			<div style={{width: "50%", marginLeft: "30px"}}>
+				<GameTileMover setLoserMessage={setLoserMessage} />
+			</div>
 			{
 				loserMessage !== "" ?
-				<YouLoseModal message={loserMessage} closeModal={handleResetGameClick}/>
-				:
-				null
+					<YouLoseModal message={loserMessage} closeModal={handleResetGameClick} />
+					:
+					null
 
 			}
 		</div>
