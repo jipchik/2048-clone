@@ -4,9 +4,9 @@ body {
 }
 
 body {
-	background: limegreen;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-family: 'Courier New', Courier, monospace
+	font-family: 'Courier New', Courier, monospace;
+	background-image: linear-gradient(to right, limegreen, blueviolet);
 }
