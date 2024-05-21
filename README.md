@@ -14,4 +14,4 @@
 2. Proper board validation
 3. Add linting
 4. Add tests
-5. Fixes sparse TODOs across the codebase
+5. Fix sparse TODOs across the codebase
