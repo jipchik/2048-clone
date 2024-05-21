@@ -8,7 +8,6 @@ export default function GameGrid() {
 	
 	let grid = useSelector(getGrid);
 
-	console.log(grid)
 	return (
 		<div className="game-grid">
 			{grid.map((cell: any, index: number) => (

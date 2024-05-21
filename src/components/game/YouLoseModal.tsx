@@ -1,8 +1,19 @@
 import "../../App.css";
-export default function YouLoseModal(props: any) {
+
+
+interface YouLoseModalProps {
+    message: string
+    closeModal: any
+}
+export default function YouLoseModal(props: YouLoseModalProps) {
     return (
         <div>
-            {props.message}
+            <div id="openModal" className="modalDialog">
+                <div>
+                    <button className="close" onClick={props.closeModal}>Close & Reset Game</button>
+                    {props.message}
+                </div>
+            </div>
         </div>
     )
 }
