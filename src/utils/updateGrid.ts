@@ -1,5 +1,5 @@
 import gridGenerator from "./gridGenerator";
-//TODO:: figure this algorithm out for updating the grid based on its passed in state, should be fun
+//TODO:: figure this algorithm out completely for updating the grid based on its passed in state, should be fun
 export default function updateGrid(
 	direction: string,
 	currentGrid: any,
@@ -50,6 +50,7 @@ export default function updateGrid(
 						if (wasUpdated[0] === i && wasUpdated[1] === j) continue;
 						let temp = parseInt(currentGrid[i][j]);
 						let newCellValue = String(temp + temp);
+						score = score + parseInt(newCellValue);
 						currentGrid[i][j - 1] = newCellValue;
 						currentGrid[i][j] = "";
 						wasUpdated = [i, j - 1]
@@ -77,6 +78,7 @@ export default function updateGrid(
 					if (currentGrid[i][j] === currentGrid[i - 1][j] && (currentGrid[i - 1][j] !== "" && currentGrid[i][j] !== "")) {
 						let temp = parseInt(currentGrid[i][j]);
 						let newCellValue = String(temp + temp);
+						score = score + parseInt(newCellValue);
 						currentGrid[i - 1][j] = newCellValue;
 						currentGrid[i][j] = "";
 						continue;
@@ -96,6 +98,7 @@ export default function updateGrid(
 					if (currentGrid[i][j] === currentGrid[i + 1][j] && (currentGrid[i + 1][j] !== "" && currentGrid[i][j] !== "")) {
 						let temp = parseInt(currentGrid[i][j]);
 						let newCellValue = String(temp + temp);
+						score = score + parseInt(newCellValue);
 						currentGrid[i + 1][j] = newCellValue;
 						currentGrid[i][j] = "";
 						continue;

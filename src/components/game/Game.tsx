@@ -31,7 +31,7 @@ export default function Game() {
 			</div>
 			{
 				loserMessage !== "" ?
-					null // <YouLoseModal message={loserMessage} closeModal={handleResetGameClick} />
+					<YouLoseModal message={loserMessage} closeModal={handleResetGameClick} />
 					:
 					null
 

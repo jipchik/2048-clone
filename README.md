@@ -3,11 +3,15 @@
 ## A getting started with TS + react project of sorts.
 
 
+## Run it on your machine.
+1. clone the repo
+2. Run `npm i`
+3. Run `npm start` to start up a local version and visit localhost:3000
+
+
 ### To-dos:
-1. Support for all directions
-2. Actual board validation
-3. Style it up
-    1. Improve the loser modal, i.e., make it an actual modal.
-    2. Make and follow a color scheme
-4. Add linting
-5. Maybe write some tests?
+1. Proper support for all directions
+2. Proper board validation
+3. Add linting
+4. Add tests
+5. Fixes sparse TODOs across the codebase
